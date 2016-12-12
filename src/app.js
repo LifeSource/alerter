@@ -1,63 +1,39 @@
 import '../styles/styles.scss';
 import Alert from './alert';
-import Alerter from './alerter';
+import Toast from './toast';
 
-let alertTypes = document.getElementsByClassName("alertType")
-
-console.log(alertTypes);
-
-console.log(`Alert type: ${alertTypes}`);
-
-let info = alertTypes[0];
-info.addEventListener('click', handleInfo, false);
+let app = document.getElementById('app')
 
 
-function handleInfo(event) {
-  let element = addElement('div');
+let alertTypes = document.getElementsByClassName('alert')
 
-  configureElement(element, {
-    type: 'Success',
-    className: 'toast',
-    message: 'message'
-  });
-
-  showAlert(element);
-
-  element.animate([
-    { opacity: 100 },
-    { opacity: 50 },
-    { opacity: 0 }], { duration: 3000, easing: 'ease'});
-  setTimeout(function () {
-    document.body.removeChild(element);
-  }, 3000);
+for (let item of alertTypes) {
+  item.addEventListener('click', showAlert, false);
 }
 
-function addElement(elementType) {
-  return document.createElement(elementType)
-}
+function showAlert(event) {
+  let toast = new Toast();
+  let alertType = event.srcElement.classList[event.srcElement.classList.length - 1];
 
-function configureElement(element, options) {
-  switch(options.type.toLowerCase()) {
+  switch(alertType.toLowerCase()) {
     case 'info':
-      element.classList.add('info')
+      toast.createToast({ type: alertType, message: 'Info message - alert wins fatality!', duration: 3000 })
+      toast.showToast()
       break;
     case 'warning':
-      element.classList.add('warning')
+      toast.createToast({ type: alertType, message: 'Warning message - biohazard has been activated!', duration: 3000 })
+      toast.showToast()
       break;
     case 'error':
-      element.classList.add('error')
+      toast.createToast({ type: alertType, message: 'Error message - something terrible happened!', duration: 3000 })
+      toast.showToast()
       break;
     case 'success':
-      element.classList.add('success')
+      toast.createToast({ type: alertType, message: 'Success message - yipeee!!!', duration: 3000 })
+      toast.showToast()
       break;
     default:
-     break;
+      break;
   }
-  element.innerText = `${options.type} ${options.message}`;
-  element.classList.add(options.className);
 }
 
-function showAlert(element) {
-  element.animate([ { opacity: 0 }, { opacity: 1000 }], { duration: 3000, easing: 'ease'});
-  document.body.appendChild(element);
-}

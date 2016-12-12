@@ -58,11 +58,16 @@ body {
       -ms-flex-align: center;
           align-items: center; }
 
+#app {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex; }
+
 .toast {
   position: absolute;
   bottom: 20px;
   right: 20px;
-  width: 30%;
+  width: 40%;
   padding: 20px;
   border-radius: 5px;
   color: #fff; }
@@ -73,11 +78,11 @@ body {
 
 .alert {
   color: white;
-  width: 30%;
-  border-radius: 5px;
+  margin-right: 20px;
   padding: 20px 80px;
   display: inline-block;
-  background: cyan; }
+  border-radius: 5px;
+  border: 2px solid black; }
   .alert-wrapper {
     display: -webkit-box;
     display: -ms-flexbox;

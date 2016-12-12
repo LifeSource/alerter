@@ -1,7 +1,7 @@
 export default class Alert {
   static types = ['info', 'warning', 'error', 'success']
 
-  constructor(type, message) {
+  constructor(type = 'info', message = '') {
     this.type = type;
     this.message = message;
   }

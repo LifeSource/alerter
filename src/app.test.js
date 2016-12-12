@@ -1,6 +1,6 @@
 import { expect, should } from 'chai'
-import Alerter from './alerter';
 import Alert from './alert';
+import Toast from './toast';
 
 describe("Alerter", () => {
 
@@ -52,21 +52,48 @@ describe("Alerter", () => {
     });
   });
 
-  describe("Alerter", () => {
-    let alerter;
+  describe("Toaster", () => {
+    let toast;
 
     beforeEach(() => {
-      alerter = new Alerter();
+      toast = new Toast();
     });
 
-    it("has a createAlert() method", () => {
-      expect(alerter.createAlert).to.exist;
+    afterEach(() => {
+      toast = null;
+    })
+
+    it("can create new toast", () => {
+      const options = {
+        type: 'info',
+        message: 'Info message',
+        duration: 3000
+      };
+      expect(toast.createToast).to.exist;
+      expect(toast.createToast(options) instanceof HTMLElement).to.be.true;
     });
 
-    it("can create new alerts", () => {
-      expect(alerter.createAlert() instanceof HTMLElement).to.be.true;
+    it("can configure toast through an options object", () => {
+      const options = {
+        type: 'info',
+        message: 'Info message',
+        duration: 3000
+      };
+      let expected = toast.configureToast(options);
+      expect(expected.type).to.equal('info')
+      expect(expected.message).to.equal('Info message')
+      expect(expected.duration).to.equal(3000)
     });
 
+    it("can show toast with showToast() method", () => {
+      expect(toast.showToast).to.exist;
+      expect(typeof toast.showToast).to.equal('function');
+    })
+
+    it("can remove toast with removeToast() method", () => {
+      expect(toast.removeToast).to.exist;
+      expect(typeof toast.removeToast).to.equal('function');
+    });
   });
 
 });
