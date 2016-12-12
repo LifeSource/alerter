@@ -1,0 +1,18 @@
+1. Should have 4 simple buttons
+  - Info
+  - Warning
+  - Error
+  - Success
+
+2. Each button should have appropriate colours
+
+  - Info -> cyan
+  - Warning -> orange
+  - Error -> red
+  - Success -> green
+
+3. Can click button to show a toaster message
+
+4. Can position toaster message in different corners of the window
+
+  - Config object...
